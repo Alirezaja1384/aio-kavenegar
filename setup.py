@@ -1,14 +1,14 @@
 from setuptools import setup
 import sys
 
-requires = ["requests>=0.10.8"]
+requires = ["httpx>=0.23.0"]
 
 if sys.version_info < (3, 9):
     sys.exit("Sorry, Python < 3.9 is not supported")
 
 setup(
     name="aio-kavenegar",
-    version="2.0.0",
+    version="2.0.1",
     description="AsyncIO compatible Kavenegar Python library",
     author="Alireza Jafari (Original project by Kavenegar Team)",
     author_email="alirezaja1384@gmail.com",
