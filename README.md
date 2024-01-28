@@ -1,16 +1,24 @@
-# kavenegar-python
+# aio-kavenegar
 
 # <a href="http://kavenegar.com/rest.html">Kavenegar RESTful API Document</a>
 If you need to future information about API document Please visit RESTful Document
+
+## Caution !
+**This repository IS NOT AN OFFICIAL KAVENEGAR CLIENT!**
+
+**This project is not compatible with the official package.**
+
+The original repository can be fount [Here](https://github.com/kavenegarkavenegar-python/).
+
 
 ## Installation
 <p> You can install our SDK from pypi through below command </p>
 
 
 ```
-pip install kavenegar
+pip install aio-kavenegar
 ```
-You can download the Python SDK <a href="https://github.com/KaveNegar/kavenegar-python/blob/master/kavenegar.py">Here</a> too
+You can download the Python SDK <a href="https://github.com/alirezaja1384/aio-kavenegar/blob/main/kavenegar.py">Here</a> too
 <p>
 Then ,You need to make an account on Kavenegar from <a href="https://panel.kavenegar.com/Client/Membership/Register">Here</a>
 </p>
@@ -22,68 +30,101 @@ Anyway there is good tutorial about <a href="http://gun.io/blog/how-to-github-fo
 
 ## Usage
 
-Well, There is an example to Send SMS by Python below. `timeout` parameter is optional in `KavenegarAPI` constructor, default value is set to 10 seconds.
+Well, There is an example to Send SMS by Python below. `timeout` parameter is optional in `AIOKavenegarAPI` constructor, default value is set to 10 seconds.
 
 ### Send
 ```python
-from kavenegar import *
-try:
-    api = KavenegarAPI('Your APIKey', timeout=20)
-    params = {
-        'sender': '',#optional
-        'receptor': '',#multiple mobile number, split by comma
-        'message': '',
-    } 
-    response = api.sms_send(params)
-    print(response)
-except APIException as e: 
-    print(e)
-except HTTPException as e: 
-    print(e)
+#!/usr/bin/env python
+import asyncio
+from aio_kavenegar import AIOKavenegarAPI, APIException, HTTPException
+
+
+async def main():
+    try:
+        api = AIOKavenegarAPI('Your APIKey', timeout=20)
+        params = {
+            'sender': '',#optional
+            'receptor': '',#multiple mobile number, split by comma
+            'message': '',
+        } 
+        response = await api.sms_send(params)
+        print(response)
+    except APIException as e: 
+        print(e)
+    except HTTPException as e: 
+        print(e)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 ### OTP
 ```python
 #!/usr/bin/env python
-from kavenegar import *
-try:
-    api = KavenegarAPI('Your APIKey', timeout=20)
-    params = {
-        'receptor': '',
-        'template': '',
-        'token': '',
-        'type': 'sms',#sms vs call
-    }   
-  response = api.verify_lookup(params)
-  print(response)
-except APIException as e: 
-  print(e)
-except HTTPException as e: 
-  print(e)
+import asyncio
+from aio_kavenegar import AIOKavenegarAPI, APIException, HTTPException
+
+
+async def main():
+    try:
+        api = AIOKavenegarAPI('Your APIKey', timeout=20)
+        params = {
+            'receptor': '',
+            'template': '',
+            'token': '',
+            'type': 'sms',#sms vs call
+        }   
+        response = await api.verify_lookup(params)
+        print(response)
+    except APIException as e: 
+        print(e)
+    except HTTPException as e: 
+        print(e)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 ### Send Bulk
 ```python
 #!/usr/bin/env python
-from kavenegar import *
-try:
-    api = KavenegarAPI('Your APIKey', timeout=20)
-    params = {
-        'sender':'["",""]',#array of string as json 
-        'receptor': '["",""]',#array of string as json 
-        'message': '["",""]',#array of string as json 
-    } 
-    response = api.sms_sendarray(params)
-    print(response)
-except APIException as e: 
-    print(e)
-except HTTPException as e: 
-    print(e)
+import asyncio
+from aio_kavenegar import AIOKavenegarAPI, APIException, HTTPException
+
+
+async def main():
+    try:
+        api = AIOKavenegarAPI('Your APIKey', timeout=20)
+        params = {
+            'sender':'["",""]',#array of string as json 
+            'receptor': '["",""]',#array of string as json 
+            'message': '["",""]',#array of string as json 
+        } 
+        response = await api.sms_sendarray(params)
+        print(response)
+    except APIException as e: 
+        print(e)
+    except HTTPException as e: 
+        print(e)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
 # Contribution
 Bug fixes, docs, and enhancements welcome! Please let us know <a href="mailto:support@kavenegar.com?Subject=SDK" target="_top">support@kavenegar.com</a>
 <hr>
 <div dir='rtl'>
-	
+
+## توجه !
+**این یک نسخه رسمی کلاینت کاوه نگار نیست!**
+
+**این پروژه با پکیج رسمی کاوه نگار سازگار نیست.**
+
+کلاینت رسمی را می توانید در [اینجا](https://github.com/kavenegar/kavenegar-python/) مشاهده کنید.
+
+
 ## راهنما
 
 ### معرفی سرویس کاوه نگار
