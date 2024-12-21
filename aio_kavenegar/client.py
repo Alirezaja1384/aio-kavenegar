@@ -75,9 +75,7 @@ class AIOKavenegarAPI(object):
     async def sms_status(self, params: Optional[dict] = None) -> dict:
         return await self._request("sms", "status", params)
 
-    async def sms_statuslocalmessageid(
-        self, params: Optional[dict] = None
-    ) -> dict:
+    async def sms_statuslocalmessageid(self, params: Optional[dict] = None) -> dict:
         return await self._request("sms", "statuslocalmessageid", params)
 
     async def sms_select(self, params: Optional[dict] = None) -> dict:
@@ -104,9 +102,7 @@ class AIOKavenegarAPI(object):
     async def sms_countpostalcode(self, params: Optional[dict] = None) -> dict:
         return await self._request("sms", "countpostalcode", params)
 
-    async def sms_sendbypostalcode(
-        self, params: Optional[dict] = None
-    ) -> dict:
+    async def sms_sendbypostalcode(self, params: Optional[dict] = None) -> dict:
         return await self._request("sms", "sendbypostalcode", params)
 
     async def verify_lookup(self, params: Optional[dict] = None) -> dict:
