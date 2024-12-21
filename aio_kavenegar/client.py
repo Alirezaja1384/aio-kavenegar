@@ -173,7 +173,7 @@ class AIOKavenegarAPI:
     async def call_status(self, params: dict = {}) -> KavenegarResponse:
         return await self._request("call", "status", params)
 
-    async def account_info(self):
+    async def account_info(self) -> KavenegarResponse:
         return await self._request("account", "info")
 
     async def account_config(self, params: dict = {}) -> KavenegarResponse:
