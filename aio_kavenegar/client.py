@@ -30,6 +30,7 @@ class AIOKavenegarAPI:
         host: str = DEFAULT_HOST,
         headers: dict = DEFAULT_HEADERS,
         proxies: dict | None = None,
+        secure: bool = True,
     ) -> None:
         """
         :param str apikey: Kavengera API Key
@@ -61,6 +62,7 @@ class AIOKavenegarAPI:
                 self.mounts.update({"http://": httpx.HTTPTransport(proxy=http)})
             if https := proxies.get("https"):
                 self.mounts.update({"https://": httpx.HTTPTransport(proxy=https)})
+        self.secure = secure
 
     def __repr__(self) -> str:
         return "kavenegar.AIOKavenegarAPI({!r})".format(self.apikey_mask)
@@ -98,7 +100,7 @@ class AIOKavenegarAPI:
         params: dict = {},
     ) -> dict:
         params: dict = self._pars_params_to_json(params)
-        url = f"https://{self.host}/{self.version}/{self.apikey}/{action}/{method}.json"
+        url = f"{"https://" if self.secure else "http://"}{self.host}/{self.version}/{self.apikey}/{action}/{method}.json"
 
         try:
             async with httpx.AsyncClient(mounts=self.mounts) as client:
